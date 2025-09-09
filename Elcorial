@@ -1,5 +1,17 @@
 <div class="chapters" style="font-family:'Noto Sans TC',sans-serif; line-height:1.8; font-size:16px;">
 
+<script>
+  // 綁定所有 label
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("label").forEach(label => {
+    /*document.querySelectorAll("label:not([for='home'])").forEach(label => {*//*如果要排除返回章節列表用這條*/
+      label.addEventListener("click", () => {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      });
+    });
+  });
+</script>
+
 <style>
  body {
     user-select: none;              /* 標準 */
@@ -475,15 +487,5 @@
 </div>
 </div>
 
-<script>
-  // 綁定所有 label
-  document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll("label").forEach(label => {
-    /*document.querySelectorAll("label:not([for='home'])").forEach(label => {*//*如果要排除返回章節列表用這條*/
-      label.addEventListener("click", () => {
-        window.scrollTo({top: 0, behavior: 'smooth'});
-      });
-    });
-  });
-</script>
+
 </div>
