@@ -1,0 +1,78 @@
+<style>
+@font-face {
+  font-family: 'Kytheran';
+  src: url('https://raw.githubusercontent.com/amelicamelic/WillStory/main/Kytheran.ttf') format('truetype');
+}
+.table-hebrew {
+  font-family: 'Kytheran', sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  /*font-size: 18px;*/
+}
+.table-hebrew th, .table-hebrew td {
+  border: 1px solid #000;
+  padding: 8px;
+}
+.table-hebrew td:nth-child(2),
+.table-hebrew td:nth-child(3),
+.table-hebrew td:nth-child(5) {
+  font-weight: bold; /* 詞類 + 性別/數 + 讀音 粗體 */
+}
+.table-hebrew td:nth-child(4) {
+  font-size: 18px;
+  direction: rtl;
+  text-align: right;
+}
+</style>
+
+<table class="table-hebrew">
+  <tr>
+    <th>中文</th>
+    <th>詞類</th>
+    <th>性・數</th>
+    <th>克塞蘭語</th>
+    <th>讀音</th>
+  </tr>
+ <tr><td>神</td><td>n.</td><td>m.sg.</td><td>אל</td><td>’el</td></tr>
+  <tr><td>惡神</td><td>n.</td><td>m.sg.</td><td>אל רע</td><td>’el ra‘</td></tr>
+<tr><td>人類</td><td>n.</td><td>m.sg.</td><td>אנוש</td><td>’enosh</td></tr>
+  <tr><td>天使</td><td>n.</td><td>m.sg.</td><td>מלאך</td><td>mal’akh</td></tr>
+  <tr><td>惡魔</td><td>n.</td><td>m.sg.</td><td>שד</td><td>sheid</td></tr>
+  <tr><td>希瑟卡多什</td><td>n.</td><td>m.sg.</td><td>כסקדש</td><td>kiseqodesh</td></tr> 
+  <tr><td>帝國</td><td>n.</td><td>m.sg.</td><td>קיסרות</td><td>qeysarut</td></tr>
+  <tr><td>克塞蘭語</td><td>n.</td><td>f.sg.</td><td>קיסתרן</td><td>qistheran</td></tr>
+  <tr><td>教皇</td><td>n.</td><td>m.sg.</td><td>אפיפיור</td><td>apifyor</td></tr>
+  <tr><td>主教</td><td>n.</td><td>m.sg.</td><td>בישוף</td><td>bishof</td></tr>
+  <tr><td>祭司</td><td>n.</td><td>m.sg.</td><td>כהן</td><td>kohen</td></tr>
+  <tr><td>米德巴爾</td><td>n.</td><td>m.sg.</td><td>מדבר</td><td>midbar</td></tr> 
+  <tr><td>樞機</td><td>n.</td><td>m.sg.</td><td>קרדינל</td><td>qardinal</td></tr>
+  <tr><td>會堂</td><td>n.</td><td>f.sg.</td><td>בית כנסת</td><td>beit kneset</td></tr>
+  <tr><td>教區</td><td>n.</td><td>f.sg.</td><td>דיוקסיה</td><td>diyoqsiyah</td></tr>
+  <tr><td>祈禱</td><td>n.</td><td>f.sg.</td><td>תפלה</td><td>tefillah</td></tr>
+  <tr><td>聖事</td><td>n.</td><td>f.sg.</td><td>סקרמנט</td><td>sakrament</td></tr>
+  <tr><td>米克韋</td><td>n.</td><td>f.sg.</td><td>מקוה</td><td>mikveh</td></tr>
+  <tr><td>聖禮</td><td>n.</td><td>f.sg.</td><td>מיסה</td><td>misa</td></tr>
+<tr><td>人</td><td>n.</td><td>m.sg.</td><td>אדם</td><td>’adam</td></tr>
+  <tr><td>女人、妻子</td><td>n.</td><td>f.sg.</td><td>אשה</td><td>ishah</td></tr>
+  <tr><td>男人、丈夫</td><td>n.</td><td>m.sg.</td><td>איש</td><td>ish</td></tr>
+  <tr><td>母親</td><td>n.</td><td>f.sg.</td><td>אם</td><td>’em</td></tr>
+  <tr><td>父親</td><td>n.</td><td>m.sg.</td><td>אב</td><td>’av</td></tr>
+  <tr><td>女兒</td><td>n.</td><td>f.sg.</td><td>בת</td><td>bat</td></tr>
+  <tr><td>兒子</td><td>n.</td><td>m.sg.</td><td>בן</td><td>ben</td></tr>
+  <tr><td>少女</td><td>n.</td><td>f.sg.</td><td>נערה</td><td>na‘arah</td></tr>
+  <tr><td>少男</td><td>n.</td><td>m.sg.</td><td>נער</td><td>na‘ar</td></tr>
+  <tr><td>城市</td><td>n.</td><td>f.sg.</td><td>עיר</td><td>‘ir</td></tr>
+  <tr><td>話、事、物</td><td>n.</td><td>m.sg.</td><td>דבר</td><td>davar</td></tr>
+  <tr><td>牲畜</td><td>n.</td><td>f.sg.</td><td>בהמה</td><td>behemah</td></tr>
+  <tr><td>房子</td><td>n.</td><td>m.sg.</td><td>בית</td><td>bayit</td></tr>
+  <tr><td>她</td><td>pron.</td><td>f.sg.</td><td>היא</td><td>hi</td></tr>
+  <tr><td>他</td><td>pron.</td><td>m.sg.</td><td>הוא</td><td>hu</td></tr>
+  <tr><td>記得、想念</td><td>v.</td><td></td><td>זכר</td><td>zakhar</td></tr>
+  <tr><td>行走、去</td><td>v.</td><td></td><td>הלך</td><td>halakh</td></tr>
+  <tr><td>站立</td><td>v.</td><td></td><td>עמד</td><td>‘amad</td></tr>
+  <tr><td>聽見、聽從</td><td>v.</td><td></td><td>שמע</td><td>shama‘</td></tr>
+  <tr><td>保守、遵守</td><td>v.</td><td></td><td>שמר</td><td>shamar</td></tr>
+  <tr><td>從、遠離</td><td>prep.</td><td></td><td>מן</td><td>min</td></tr>
+  <tr><td>對、到</td><td>prep.</td><td></td><td>אל</td><td>’el</td></tr>
+</table>
