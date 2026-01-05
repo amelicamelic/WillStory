@@ -1,0 +1,920 @@
+<div class="chapters" style="font-family:'Noto Sans TC',sans-serif; line-height:1.8; font-size:16px;">
+
+<script>
+  // 綁定所有 label
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("label").forEach(label => {
+    /*document.querySelectorAll("label:not([for='home'])").forEach(label => {*//*如果要排除返回章節列表用這條*/
+      label.addEventListener("click", () => {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      });
+    });
+  });
+</script>
+
+<style>
+ body {
+    user-select: none;              /* 禁止反白：標準 */
+    -webkit-user-select: none;      /* 禁止反白：Chrome, Safari */
+    -moz-user-select: none;         /* 禁止反白：Firefox */
+    -ms-user-select: none;          /* 禁止反白：IE/Edge */
+  }
+::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+  .chapters input { display:none; }
+  .chapter-list, .chapter-content { display:none; }
+
+  /* 預設顯示章節列表 */
+  #home:checked ~ .chapter-list { display:grid; }
+
+  /* 顯示對應章節內容 */
+  #c1:checked ~ #content1,
+  #c2:checked ~ #content2,
+  #c3:checked ~ #content3,
+  #c4:checked ~ #content4,
+  #c5:checked ~ #content5,
+  #c6:checked ~ #content6,
+  #c7:checked ~ #content7,
+  #c8:checked ~ #content8,
+  #c9:checked ~ #content9,
+  #c10:checked ~ #content10,
+  #c11:checked ~ #content11,
+  #c12:checked ~ #content12,
+  #c13:checked ~ #content13,
+  #c14:checked ~ #content14,
+  #c15:checked ~ #content15,
+  #c16:checked ~ #content16,
+  #c17:checked ~ #content17,
+  #c18:checked ~ #content18,
+  #c19:checked ~ #content19,
+  #c20:checked ~ #content20,
+  #c21:checked ~ #content21,
+  #cMAP:checked ~ #contentMAP,
+  #c22:checked ~ #content22,
+  #c23:checked ~ #content23,
+  #c24:checked ~ #content24,
+  #c25:checked ~ #content25,
+  #c26:checked ~ #content26,
+  #c27:checked ~ #content27,
+  #c28:checked ~ #content28,
+  #c29:checked ~ #content29,
+  #c30:checked ~ #content30,
+  #c31:checked ~ #content31,
+  #c32:checked ~ #content32,
+  #c33:checked ~ #content33,
+  #c34:checked ~ #content34,
+  #c35:checked ~ #content35,
+  #c36:checked ~ #content36,
+  #c37:checked ~ #content37,
+  #c38:checked ~ #content38,
+  #c39:checked ~ #content39,
+  #c40:checked ~ #content40,
+  #c41:checked ~ #content41,
+  #c42:checked ~ #content42,
+  #c43:checked ~ #content43,
+  #c44:checked ~ #content44,
+  #c45:checked ~ #content45,
+  #c46:checked ~ #content46,
+  #c47:checked ~ #content47,
+  #c48:checked ~ #content48,
+  #c49:checked ~ #content49,
+  #c50:checked ~ #content50 { display:block; }
+
+
+
+  /* 章節列表改為二欄 */
+  .chapter-list {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px 20px; /* 行間距、列間距 */
+    margin-top: 1em;
+  }
+
+  .chapters label {
+    display:block;
+    cursor:pointer;
+    padding:8px;
+    border:1px solid #ccc;
+    border-radius:4px;
+    text-align:center;
+    font-weight:bold;
+    color:#353535;
+    background:#fff;
+  }
+  .chapters label:hover { background:#f5f5f5; color:#353535; }
+
+  .nav-container{        /* 按鈕 */
+    margin-top:20px;
+    display:grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items:center;
+    width:100%;
+    gap:0;
+  }
+  .btn{
+    display:inline-block;
+    cursor:pointer;
+    padding:6px 12px;
+    border:1px solid #ccc;
+    border-radius:4px;
+    background:#f9f9f9;
+    color:#0066cc;
+    font-weight:bold;
+    text-align:center;
+  }
+  .btn:hover{ background:#eef; color:#cc0000; }
+
+  /* 對齊到三個欄位 */
+  .btn-prev{ justify-self:start; }
+  .btn-home{ justify-self:center; }
+  .btn-next{ justify-self:end; }
+
+  /* 沒有上一/下一章時用這個：保留寬度、不響應點擊 */
+  .is-disabled{
+    visibility:hidden;        /* 看不到但保留空間 → 版位不動 */
+    pointer-events:none;      /* 禁用點擊 */
+  }
+</style>
+
+<!-- radio 控制 -->
+<input type="radio" name="page" id="home" checked>
+<input type="radio" name="page" id="c1">
+<input type="radio" name="page" id="c2">
+<input type="radio" name="page" id="c3">
+<input type="radio" name="page" id="c4">
+<input type="radio" name="page" id="c5">
+<input type="radio" name="page" id="c6">
+<input type="radio" name="page" id="c7">
+<input type="radio" name="page" id="c8">
+<input type="radio" name="page" id="c9">
+<input type="radio" name="page" id="c10">
+<input type="radio" name="page" id="c11">
+<input type="radio" name="page" id="c12">
+<input type="radio" name="page" id="c13">
+<input type="radio" name="page" id="c14">
+<input type="radio" name="page" id="c15">
+<input type="radio" name="page" id="c16">
+<input type="radio" name="page" id="c17">
+<input type="radio" name="page" id="c18">
+<input type="radio" name="page" id="c19">
+<input type="radio" name="page" id="c20">
+<input type="radio" name="page" id="c21">
+<input type="radio" name="page" id="cMAP">
+<input type="radio" name="page" id="c22">
+<input type="radio" name="page" id="c23">
+<input type="radio" name="page" id="c24">
+<input type="radio" name="page" id="c25">
+<input type="radio" name="page" id="c26">
+<input type="radio" name="page" id="c27">
+<input type="radio" name="page" id="c28">
+<input type="radio" name="page" id="c29">
+<input type="radio" name="page" id="c30">
+<input type="radio" name="page" id="c31">
+<input type="radio" name="page" id="c32">
+<input type="radio" name="page" id="c33">
+<input type="radio" name="page" id="c34">
+<input type="radio" name="page" id="c35">
+<input type="radio" name="page" id="c36">
+<input type="radio" name="page" id="c37">
+<input type="radio" name="page" id="c38">
+<input type="radio" name="page" id="c39">
+<input type="radio" name="page" id="c40">
+<input type="radio" name="page" id="c41">
+<input type="radio" name="page" id="c42">
+<input type="radio" name="page" id="c43">
+<input type="radio" name="page" id="c44">
+<input type="radio" name="page" id="c45">
+<input type="radio" name="page" id="c46">
+<input type="radio" name="page" id="c47">
+<input type="radio" name="page" id="c48">
+<input type="radio" name="page" id="c49">
+<input type="radio" name="page" id="c50">
+
+
+
+
+<!-- 章節列表 -->
+<div class="chapter-list">
+  <label for="c1">值得千年的等待</label>
+  <label for="c2">睡美人</label>
+  <label for="c3">是誰</label>
+  <label for="c4">是哪裡</label>
+  <label for="c5">離開</label>
+  <label for="c6">熟悉又陌生</label>
+  <label for="c7">少年維爾</label>
+  <label for="c8">勞作</label>
+  <label for="c9">摩迦</label>
+  <label for="c10">穌羅阿</label>
+  <label for="c11">受歡迎</label>
+  <label for="c12">禮物</label>
+  <label for="c13">重要的事物</label>
+  <label for="c14">災厄降臨</label>
+  <label for="c15">託付</label>
+  <label for="c16">找到了</label>
+  <label for="c17">沉眠</label>
+  <label for="c18">旅行</label>
+  <label for="c19">停滯</label>
+  <label for="c20">啟程</label>
+  <label for="c21">映照</label>
+  <label for="cMAP">【地圖】</label>
+  <label for="c22">湊合過日子</label>
+  <label for="c23">感情好</label>
+  <label for="c24">心意</label>
+  <label for="c25">不安</label>
+  <label for="c26">失蹤</label>
+  <label for="c27">林地</label>
+  <label for="c28">碎片</label>
+  <label for="c29">成年禮物</label>
+  <label for="c30">野獸</label>
+  <label for="c31">崩潰</label>
+  <label for="c32">永別</label>
+  <label for="c33">十九年</label>
+  <label for="c34">再臨</label>
+  <label for="c35">眷屬</label>
+  <label for="c36">神經病</label>
+  <label for="c37">迷途</label>
+  <label for="c38">虎視眈眈</label>
+  <label for="c39">守護</label>
+</div>
+
+<!-- 章節內容 -->
+<div id="content1" class="chapter-content">
+  <h2>值得千年的等待</h2>
+  <p>
+　　<strong>「殺了我。」</strong><br>
+<br>
+　　若不如此，這股黑暗將反過來奪走你。<br>
+<br>
+　　<strong>「祢必須贖罪。」</strong><br>
+<br>
+　　那聲音中，既有痛楚，也有不捨。<br>
+<br>
+　　<strong>「殺了我，否則後患無窮。」</strong><br>
+<br>
+　　那股邪惡的力量已經徹底佔據祂的精神，貪婪地撕扯著祂的靈魂。它既在蠶食祂的心智，又在治癒祂的軀殼，試圖奪取祂的主宰權。若此時不將祂徹底殲滅，祂一旦恢復，將化為這世界上最可怕的存在——而且不再是祂自己。<br>
+<br>
+　　<strong>「祢將化身為人類，在那裡重新尋回自己的心。待祢找回之時，就是我們再次相遇之刻……艾爾格里亞。」</strong><br>
+<br>
+　　隨著這句低語，雅威收回了格利亞絕大部分的力量，取走了祂的心神與記憶。格利亞的意識隨即陷入沉寂。<br>
+　　雅威俯身，在祂的額頭落下一吻。奇跡般地，所有的創傷都消失了，胸口巨大的裂口與身上的烙印一同被抹去，失去的右手復原如初，頭髮與眼睛從被玷污的暗色重歸純淨的光明。<br>
+　　此刻的祂看起來，彷彿又回到了最初，雅威第一次見到祂時的模樣。<br>
+
+  </p>
+<div class="nav-container">
+  <label for="c0" class="btn btn-prev is-disabled">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c2" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content2" class="chapter-content">
+  <h2>睡美人</h2>
+  <p>
+　　當人們還在爭論天神大戰的真相，傳說魔王格利亞究竟是如何殞落之時，一個寧靜的小村莊裡，卻悄然出現了一名陌生的少年。<br>
+　　他靜靜地躺在茂密的草叢裡，陷入沉睡。少年的臉龐清麗如天使，白皙的肌膚透著微微的紅潤，一頭金色的長髮在陽光下閃耀光澤，長而翹的睫毛，映出一副幾近完美的容貌。唯一的瑕疵，是眉毛只剩前半，後尾皆空缺，使得他的美顏帶著一絲詭異的不完整。<br>
+　　最先發現他的是一個小男孩。男孩驚奇之下，急忙告訴了父母，於是這個少年才被帶回，暫時安置下來。<br>
+　　然而，村中大多數人依舊對這個來歷不明的陌生人充滿戒心，不敢輕易相信。<br>
+  </p>
+<div class="nav-container">
+  <label for="c1" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c3" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content3" class="chapter-content">
+  <h2>是誰</h2>
+  <p>
+　　疲憊的眼皮顫動，少年緩緩睜開眼睛。迎接他視線的，是完全陌生的場景。他醒來了，卻感覺身體虛弱無比，四肢彷彿不屬於自己一般。<br>
+　　就在這時，一名挺著肚子的女人注意到他的動靜，神情焦急地查看他的情況。少年本能地想要閃躲，然而手腳根本使不上力，反而踉蹌摔倒在地。<br>
+　　「小心點。」<br>
+　　女人立刻伸手將他扶起，示意他不要亂動。她眼裡滿是疑慮，問他究竟是誰、來自何處、為何會倒在那裡、發生了什麼事，又為什麼會孤身一人。<br>
+　　一連串的問題如洪水般傾瀉而出，而少年卻完全沒有反應。他只是愣愣地看著她，眼神中滿是茫然與困惑，唇邊吐不出一個字。<br>
+　　「……？」<br>
+ </p>
+<div class="nav-container">
+  <label for="c2" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c4" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content4" class="chapter-content">
+  <h2>是哪裡</h2>
+  <p>
+　　少年沒有立刻給出反應。女人見狀，也不再多說，只是輕輕替他拉好被褥，便轉身回去準備飯食。<br>
+　　不久之後，男人帶著孩子回來了。女人立刻將剛才的情況告訴了丈夫。男人站在被褥旁，凝視著那個陌生的少年，眉頭緊鎖。如果無法弄清他的身世與來歷，讓他留在這裡太過危險。<br>
+　　少年依舊茫然，眼神空洞，起初甚至似乎聽不懂他們在說什麼。<br>
+　　直到過了許久，他才微微張開嘴，斷斷續續地吐出一個單詞。那是一個在他耳邊反覆出現的聲音——名字…？他模仿著說了出來，聲音顫抖卻清晰。<br>
+　　從這一刻開始，他似乎逐漸恢復了正常，慢慢能夠對話。但即便如此，他依舊不記得自己是誰，也不記得為什麼會出現在那片草叢。<br>
+　　他的眼神裡帶著深深的空洞，彷彿拼命想理解身邊的一切。那一切觸手可及，又那麼真實，卻又帶著無可言喻的虛假。<br>
+  </p>
+<div class="nav-container">
+  <label for="c3" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c5" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content5" class="chapter-content">
+  <h2>離開</h2>
+  <p>
+　　夜幕降臨，一家人圍坐在桌旁共進晚餐。少年則靜靜地坐在角落，眼神緊緊追隨著他們的一舉一動。<br>
+　　與先前那茫然失措的模樣相比，短短數分鐘之內，他就從全然聽不懂言語的狀態，轉變為能流利應答，這份反差讓人驚異。<br>
+　　一家人再次詢問少年的來歷，他低頭沉思，卻最終只是輕輕搖了搖頭。答案依舊成謎。<br>
+　　飯後，男主人深深歎息，眉宇間滿是無奈。眼前這個人來路不明，若繼續收留難免徒增風險。最終，他還是決定讓少年離開。<br>
+　　就這樣，少年被送出了屋子。<br>
+　　夜色沉沉，無人知曉他要去往何方。只見他的背影漸行漸遠，終於消失在無邊的黑暗裡。<br>
+<div class="nav-container">
+  <label for="c4" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c6" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content6" class="chapter-content">
+  <h2>熟悉又陌生</h2>
+  <p>
+　　清晨的陽光剛灑下時，女主人無意間看見屋旁蜷縮著一個孤單的身影。細看之下，她驚訝地發現，那正是昨夜被他們趕走的少年。<br>
+　　他衣著單薄，顯得格外孱弱。女人心頭一緊，急忙進屋取來一條厚實的斗篷，輕輕地披在他身上。少年的視線落在那斗篷上，愣愣地停留了片刻，一股難以言喻的熟悉感湧上心頭。<br>
+　　「我不知道能去哪裡。」他低聲說道。<br>
+　　女人看著這副模樣，心生不忍。她與丈夫商量後，最終決定允許少年暫時留在村中，在農舍裡安身。作為交換，他必須用勞作來回報這份庇護。<br>
+  </p>
+<div class="nav-container">
+  <label for="c5" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c7" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content7" class="chapter-content">
+  <h2>少年維爾</h2>
+  <p>
+　　由於少年始終說不出自己的名字，日常溝通成了一件麻煩的事。為了方便，女人便替他取了一個暫時的名字——維爾（Will）。<br>
+　　少年聽後只是靜靜看著她，沒有表露出任何抗拒或不滿，於是這個名字便這樣落定。<br>
+  </p>
+<div class="nav-container">
+  <label for="c6" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c8" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content8" class="chapter-content">
+  <h2>勞作</h2>
+  <p>
+　　維爾看起來白淨而纖弱，雙手的肌膚細膩得異常，沒有一點長年勞動所留下的粗糙與繭痕。正因如此，他並未被安排參與最粗重的農活，而是隨著婦女們一同在田裡幹活。<br>
+　　女主人普賽基利（Pucecri）因懷有身孕，許多原本屬於她的勞作，便順理成章地落到了維爾的肩上。在一旁幫忙的，還有普賽基利與拿巴的孩子——摩迦（Mockat），那個最初在草叢裡發現維爾的男孩。他與維爾並肩而立，默默學著分擔農務。<br>
+  </p>
+<div class="nav-container">
+  <label for="c7" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c9" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content9" class="chapter-content">
+  <h2>摩迦</h2>
+  <p>
+　　摩迦年齡不過三、四歲，既有這個年紀孩子應有的天真活潑，又帶著一份難得的乖巧。他很快就對維爾產生了親近之情，毫不猶豫地將他視作朋友。<br>
+　　而維爾依舊如往常一般，對一切沒有意見。他順理成章地接受了「摩迦朋友」這個設定，儘管在他心底，仍不明白朋友究竟意味著什麼。<br>
+　　摩迦卻把這段關係看得很重要。他對待維爾總是慷慨大方，經常將自己的東西與他分享，甚至不惜把自己最喜愛的莓果獻給他。<br>
+  </p>
+<div class="nav-container">
+  <label for="c8" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c10" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content10" class="chapter-content">
+  <h2>穌羅阿</h2>
+  <p>
+　　很快，普賽基利迎來了臨盆之日。伴隨著清脆的啼哭聲，一名女嬰誕生於這個家庭。夫妻二人給她取名為穌羅阿（Seuloah），象徵着「治癒之泉」。<br>
+　　自從這個新生命到來，一家人便比以往更加忙碌，維爾也不例外。<br>
+　　在長時間的相處後，拿巴與普賽基利對維爾的態度早已不復最初的戒心，他們逐漸將這名少年視作弟弟一般。雖然維爾表面依舊冷淡，卻總能默默把事情處理得妥妥當當，細節之處更是周全細緻，讓這對夫妻都自嘆不如。<br>
+　　於是，維爾的工作又多了一項——成為小小嬰兒的保姆，照料這個剛剛降生的生命。<br>
+  </p>
+<div class="nav-container">
+  <label for="c9" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c11" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content11" class="chapter-content">
+  <h2>受歡迎</h2>
+  <p>
+　　維爾的臉上總是掛著一副生人勿進的冷淡神情，彷彿與世隔絕。但令人意外的是，他卻很受孩子們的歡迎。<br>
+　　最初是摩迦，如今就連剛出生不久的穌羅阿也是如此。前一刻還嚎啕大哭，下一刻只要被維爾抱在懷裡哄一哄，立刻就安靜下來。甚至在農地裡，當維爾把她背在背上幹活時，小嬰兒也安分得出奇，不吵不鬧。<br>
+　　這一幕讓拿巴心中湧起了強烈的挫敗感——他也想體會女兒那香香軟軟、撒嬌依賴的模樣，卻怎麼也比不上維爾的魔力。<br>
+　　普賽基利則在一旁忍不住笑意，靜靜看著這溫馨又略帶喜感的一幕。<br>
+  </p>
+<div class="nav-container">
+  <label for="c10" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c12" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content12" class="chapter-content">
+  <h2>禮物</h2>
+  <p>
+　　時間流轉，一年半悄然過去。穌羅阿已經能自己走動，甚至開始牙牙學語。<br>
+　　摩迦高興地把手中的莓果舉起來，笑著告訴母親那是父親帶回來的禮物。<br>
+　　穌羅阿眼睛一亮，立刻跟著喊著「莓果！」小小的手裡捧著果實，滿心歡喜。<br>
+　　普賽基利看著兩個孩子滿臉的笑容，心中柔軟，輕聲對他們說這是因為他們都是乖孩子。<br>
+　　隨後，她讓他們去盡情玩耍。穌羅阿轉身跑向維爾，兩隻小手小心翼翼地把一顆莓果遞到他手裡。<br>
+　　維爾接過來，向她道謝。<br>
+  </p>
+<div class="nav-container">
+  <label for="c11" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c13" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content13" class="chapter-content">
+  <h2>重要的事物</h2>
+  <p>
+　　普賽基利的目光隨著孩子們移動，聲音裡帶著母親獨有的堅定與溫柔。<br>
+　　她說，這兩個孩子是她和拿巴的全部。無論遭遇什麼，她都會用生命去守護他們。<br>
+　　維爾聽著，從她的語氣裡感受到深切的真情。<br>
+　　他沉默了片刻，像是在努力思索自己心中是否也有什麼最重要的事物，卻只感到一片空白。普賽基利見狀，溫柔一笑，輕聲願他能早日找到屬於自己的答案。<br>
+　　她的語氣逐漸低沉，像是在向夜風傾訴。<br>
+　　人類的壽命並不長，而她最大的願望就是能比任何人活得更久。因為她不希望看見自己所愛的人、或愛著自己的人，因為她的離去而痛苦。<br>
+　　她的眼神閃爍著無法掩飾的悲傷，吐露出最真切的心聲——世上最痛苦、最孤寂的事情，莫過於親眼看見摯愛之人死去。<br>
+　　維爾靜靜聽著，他不明白這麼複雜的情緒，但心中卻湧起惆悵。<br>
+  </p>
+<div class="nav-container">
+  <label for="c12" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c14" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content14" class="chapter-content">
+  <h2>災厄降臨</h2>
+  <p>
+　　這天，維爾依照慣例，帶著一些值錢的作物前往鄰近的村莊做交易。<br>
+　　再過幾日，就是他來到這裡的第三個年頭。然而，他對自己的來歷依然一無所知。他開始懷疑，自己是否真的應該繼續留在這裡，可若不是這裡，他又能去往何處？這種矛盾令他心中浮起莫名的躁動。<br>
+　　夜幕低垂，返程的路上，他越走越覺異樣。村莊四周異常寂靜，黑暗無邊，沒有一盞燈火被點亮。整個空間籠罩在死寂之中，並且伴隨著濃烈到令人窒息的血腥氣息。<br>
+　　維爾心頭一緊，立刻加快腳步，直奔拿巴夫妻的家。<br>
+　　映入眼簾的景象令他僵在原地——普賽基利滿身是血，倒臥於地，胸前橫亙著兩道深可見骨的傷口，致命而冰冷。<br>
+　　向來神情淡漠的維爾，此刻瞳孔劇烈收縮，呼吸因震顫而急促。只是這份情緒爆發僅僅維持了一瞬，他便強行將自己壓回平靜的面容。<br>
+  </p>
+<div class="nav-container">
+  <label for="c13" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c15" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content15" class="chapter-content">
+  <h2>託付</h2>
+  <p>
+　　普賽基利在生命的最後時刻，用盡僅存的力氣，將視線定格在維爾身上。<br>
+　　她的聲音微弱卻急切，哀求著他要好好照顧穌羅阿。維爾俯下身，聲音低沉而堅定，鄭重地給出了承諾。<br>
+　　女人的呼吸愈發急促，她低聲吐出「箱子」二字，維爾明白了什麼，立刻點頭應允。<br>
+　　「抱歉，維爾⋯我很抱歉⋯」她眼中浮現出歉疚，反覆道著「抱歉」。<br>
+　　維爾只是握緊她的手，一遍又一遍地回應「沒事的」。直到最後，她用幾乎聽不清的聲音說了句「謝謝你」，便徹底失去了力氣。<br>
+　　那一刻，維爾第一次真切地感受到緊張與恐懼。掌心傳來的溫度正在一點點流逝，他卻死死地不肯放開，仿佛只要抓緊這雙手，就能阻止死亡的到來。時間彷彿停滯，他只能凝視著眼前的女人，看著她的面容逐漸失去光彩。<br>
+  </p>
+<div class="nav-container">
+  <label for="c14" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c16" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content16" class="chapter-content">
+  <h2>找到了</h2>
+  <p>
+　　在失落與死寂的靜默裡，他忽然喃喃自語，像是對自己，也像是對眼前再也聽不見的她說話。<br>
+　　他終於找到了那個一直尋覓的重要的事物。<br>
+　　「重要的事物，我找到了。就是你們，就是你們……」他一遍又一遍地重複，可無論他如何呼喚，女人再也沒有回應。<br>
+　　「聽不見了嗎…？」他的聲音逐漸空洞，徹底沉沒在寂靜裡。<br>
+　　維爾的臉上依舊沒有任何表情，沒有眼淚，沒有悲傷，外表冷硬如石。<br>
+　　但在那一瞬間，他理解了普賽基利的話——看著自己所愛之人死去，世上沒有比這更痛苦、更孤寂的事。<br>
+  </p>
+<div class="nav-container">
+  <label for="c15" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c17" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content17" class="chapter-content">
+  <h2>沉眠</h2>
+  <p>
+　　維爾走進農舎，找到那個最不起眼的箱子。當他打開時，裡頭是一個小小的身影，被斗篷緊緊包裹著，乖巧地等待。那正是穌羅阿。而包裹她的，依舊是那件熟悉的斗篷。<br>
+　　穌羅阿見到維爾，立刻露出欣喜的笑容，天真地抱怨母親說乖乖躲好，一會兒就陪她玩，卻一直沒出現。<br>
+　　他聲音低沉，告訴女孩父母還有許多事要忙，因此他將帶著她去旅行。聽到「旅行」二字，穌羅阿眼睛一亮，興奮得拍著小手，滿心期待，還不忘問起哥哥。<br>
+　　維爾沒有回應，只是眼底閃過一絲複雜而深沉的神色。他將女孩緊緊抱入懷中，輕聲哄著，直到她安然入睡。<br>
+　　隨後，他繞過後院，走向田野。田邊靜靜橫陳著拿巴與摩迦的屍身，身首分離，觸目驚心。維爾沒有任何言語，只是沉默地挖了幾個土坑，把普賽基利、拿巴和摩迦的屍身安置其中。<br>
+　　一切妥當之後，他重新抱起沉睡中的穌羅阿，走過那一間間曾經熟悉的房屋，那些無數次踏過的小徑，那片曾經辛勤耕作的田地。如今，它們全都被血腥覆蓋。<br>
+　　維爾懷抱著女孩，仿佛什麼都沒有看見，沒有停留片刻，徑直離開了那片土地。<br>
+  </p>
+<div class="nav-container">
+  <label for="c16" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c18" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content18" class="chapter-content">
+  <h2>旅行</h2>
+  <p>
+　　維爾憑藉著驚人的學習能力，迅速掌握了足以應用的醫術。雖不算精深，但足以為人治傷治病，換取所需的糧食與物資。<br>
+　　他帶著穌羅阿一路徒步向西。沿途經過大馬士革、卡爾凱米什、赫梯，每到一處便停留數週乃至數月，稍作歇息與積累。<br>
+　　最終，他們落腳於小亞細亞西岸。這裡是希臘人的殖民地，農業繁盛，漁業興旺，商貿四通八達。最重要的是，這片土地對外來者極為接納。<br>
+　　村落中的人們見維爾獨自帶著一個小女孩，無不投以善意的眼神，或伸手給予照料。於是，這片土地暫時成了他們安穩的歸處。<br>
+  </p>
+<div class="nav-container">
+  <label for="c17" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c19" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content19" class="chapter-content">
+  <h2>停滯</h2>
+  <p>
+　　晃眼之間，他們在這裡已經度過了五年。<br>
+　　穌羅阿一天天長大，童聲漸褪，容貌逐漸明朗，而維爾卻驚異地發現，自己的外貌絲毫沒有任何變化。將近九年的時光，歲月沒有在他身上留下半點痕跡。<br>
+　　他的皮膚依舊細膩光滑，身體與最初相見時幾乎一模一樣，沒有明顯的成長痕跡，也沒有多餘的體毛。他看上去，依舊停留在當年目測約十六歲的模樣。<br>
+　　如今若按年紀推算，他早該是二十五歲的青年，理應如其他同齡男子般，體毛濃密、身材健壯，渾身散發著成熟而旺盛的雄性氣息。可他卻依然是個乳臭未乾的少年，好像流逝的時間，唯獨將他遺漏了。<br>
+  </p>
+<div class="nav-container">
+  <label for="c18" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c20" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content20" class="chapter-content">
+  <h2>啟程</h2>
+  <p>
+　　來到這裡的第十個年頭，終於有人開始對維爾的外貌議論起來。<br>
+　　起初，人們只覺得他像一個帶著孩子的年輕父親。可隨著時間推移，穌羅阿漸漸長大，他們兩人的模樣卻越發像是兄妹，而非父女。<br>
+　　八卦是人類的天性，流言蜚語隨之滋生。漸漸地，甚至出現了一些難以啟齒、不堪入耳的傳言。<br>
+　　穌羅阿也因這些流言被同齡孩子指指點點，她憤然與人爭吵，甚至不惜大打出手。<br>
+　　為了避免更多的紛擾與牽連，維爾最終決定，再次踏上旅途。他們不得不離開這個曾庇護了他們十年的聚落。<br>
+  </p>
+<div class="nav-container">
+  <label for="c19" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c21" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content21" class="chapter-content">
+  <h2>映照</h2>
+  <p>
+　　往後的八年裡，他們不斷輾轉，從色雷斯到布林迪西，再到如今落腳的台伯河西岸。每一處，他們都停留兩三年。<br>
+　　維爾的外貌始終如初，沒有任何變化。而與之形成鮮明對比的，穌羅阿早已從昔日的稚子，成長為亭亭玉立的少女，明眸皓齒，氣質鮮明。<br>
+　　這些年來，維爾對她的呵護可謂無微不至，捧在手心怕摔了，含在口中怕化了，幾乎將她視作最珍貴的存在。<br>
+　　有時，維爾時常能看到普賽基利的影子。但不同的是，普賽基利總是溫柔端莊，而穌羅阿則活潑熱情，如陽光般燦爛。<br>
+  </p>
+<div class="nav-container">
+  <label for="c20" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="cMAP" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="contentMAP" class="chapter-content">
+  <h2>【地圖】</h2>
+  <p>
+<img src="https://i.imgur.com/jdjX0OA.jpeg" alt="地圖" style="max-width:100%; height:auto; display:block;">
+<strong>【路線】</strong><br>
+◆Nazareth（拿巴一家所在地）<br>◇Damascus<br>◆Carchemish<br>◇Hittite<br>◆Asia Minor<br>◇Thrace<br>◆Brundisium<br>◇West of the Tiber River
+  </p>
+<div class="nav-container">
+  <label for="c21" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c22" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content22" class="chapter-content">
+  <h2>湊合過日子</h2>
+  <p>
+　　令維爾感到困擾的，是長年漂泊不定的生活，讓穌羅阿始終無法擁有穩定的日子。如今，她已經二十一歲，卻仍未出嫁。<br>
+　　這似乎也不算奇怪。畢竟，身邊總有一個與她年齡相仿的少年陪伴，兩人長久共同生活。許多初次見到他們的人，都理所當然地以為他們是一對夫妻。<br>
+　　維爾其實也曾考慮過，是否應該為穌羅阿尋一位可靠的男子為夫，讓她能夠在此長居安定。然而，穌羅阿卻始終堅決不肯。<br>
+　　「這世上不會有比維爾對我更好的男人了，我怎麼可能看得上其他人。」<br>
+　　「反正所有人都認定我們是夫妻，沒人會說什麼閒話。」<br>
+　　「你休想擺脫我！這輩子算是被我纏上了，嘿嘿。」<br>
+　　她笑著說，語氣裡滿是任性與篤定。<br>
+　　維爾無奈地嘆了口氣。可細想起來，日子就這麼湊合著過下去，好像也沒什麼不好。<br>
+  </p>
+<div class="nav-container">
+  <label for="cMAP" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c23" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content23" class="chapter-content">
+  <h2>感情好</h2>
+  <p>
+　　穌羅阿如今在一間飯館裡勞作。她的性格熱情爽朗，待人親切大方，很快便贏得了客人的喜愛。只要有她在的地方，總能聽見此起彼伏的笑聲，氣氛也因此變得格外熱鬧。<br>
+　　維爾則延續著他的醫者生涯。經過十八年的學習與磨練，他的醫術早已純熟無比，被鄰近各地的人稱作「小醫生」。白日裡，他要麼接診病患，要麼潛心研究草藥。<br>
+　　每到傍晚，他都會準時走到飯館門口，靜靜等候穌羅阿，然後與她一同回家。<br>
+　　周圍的人們常常打趣他們夫妻感情深厚，言辭裡帶著善意的調侃。穌羅阿總是笑著應對，玩笑帶過，卻從不曾否認這樣的說法。<br>
+  </p>
+<div class="nav-container">
+  <label for="c22" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c24" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content24" class="chapter-content">
+  <h2>心意</h2>
+  <p>
+　　夜晚，穌羅阿安靜地坐在維爾身旁。像往常一樣，他們談笑著一天裡的趣事，氣氛溫和而親近。<br>
+　　她習慣依偎在這個自小陪伴在身邊的「哥哥」身邊。不知從何時開始，這份感情漸漸發生了微妙的變化。<br>
+　　隨著年歲增長，她終於能看懂當年的真相。他們從來不是出來旅行，而是無處可去。關於父母和兄長的記憶，她早已完全模糊，甚至幾乎不存在。<br>
+　　從她記事以來，只有維爾一直守護著她，兩人相依為命。<br>
+　　穌羅阿心裡很清楚自己對維爾的情感早已不同於以往，但她沒有打算說出口。她不願冒險破壞這份得來不易的平衡。<br>
+　　對她而言，能夠像此刻這樣與他並肩而坐，聽著他的聲音，感受他的存在，就已經足夠。<br>
+  </p>
+<div class="nav-container">
+  <label for="c23" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c25" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content25" class="chapter-content">
+  <h2>不安</h2>
+  <p>
+　　日子過得安逸而平靜。又過了幾個月，按理他們本該再次收拾行囊，換個地方落腳，但這一次，兩人都覺得台伯河西岸足夠安適。於是，他們達成共識，決定再多停留幾年。<br>
+　　到飯點的時候，維爾一如往常準時出現在飯館。然而，四處張望卻始終不見穌羅阿的身影。<br>
+　　他走去詢問老闆，這才得知今日有位頗有名望的婦人要人上門做飯，於是老闆便派穌羅阿前往。<br>
+　　維爾聽完，立即向老闆要了具體的位置。沒有絲毫停留，他立刻轉身前行。<br>
+　　不知為什麼，他的心口湧起一股難以言喻的強烈噁心感，像是某種不祥的預兆，狠狠攫住了他的胸膛。<br>
+  </p>
+<div class="nav-container">
+  <label for="c24" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c26" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content26" class="chapter-content">
+  <h2>失蹤</h2>
+  <p>
+　　維爾一路焦急地趕到那位婦人的家門口，卻被告知對方今日根本沒有請人上門做飯。<br>
+　　線索驟然斷絕，讓他的內心掀起更大的躁動。他徹夜在城中與郊野四處尋找，直到深夜，依舊一無所獲。<br>
+　　也許她先回去了——他心中這麼想著，立刻轉身飛奔回家。然而，迎接他的卻只是空無一人的屋舍與死一般的寧靜。於是，他再度走入黑夜。<br>
+　　直到太陽升起，人們開始重新外出活動，維爾仍不放棄，逢人便問。平日裡冷淡寡言的少年，忽然如此焦急，顯然事態非同尋常。村人們見狀，也都主動加入幫忙。<br>
+　　不久，有位婦人提供了關鍵的消息：昨日下午，她曾看見一個金髮的女孩與一名男子，一同朝東邊走去。<br>
+　　順著這條線索，維爾沿東而行，並從沿途居民的口中，逐漸拼湊出更多的蛛絲馬跡。<br>
+  </p>
+<div class="nav-container">
+  <label for="c25" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c27" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content27" class="chapter-content">
+  <h2>林地</h2>
+  <p>
+　　一名男子向維爾提供了消息：就在昨日傍晚，他親眼看見一名男子與一位金髮女子爭吵。男子怒氣沖沖，緊緊抓住女子的手臂，硬生生將她往林地的方向拖去。<br>
+　　爭執的聲響引來了不少圍觀者，但那男子聲稱女子是自己的妻子。出於顧慮，眾人也便不好再多做干涉，只能眼睜睜看著二人消失在林中。<br>
+　　林地說大不大，說小不小。維爾就這樣孤身一人，徹底踏入其中，一路尋索，直到夕陽再度沉落。<br>
+　　而那股熟悉的噁心感再度浮現，與前一日相比更為強烈。隨著他一步步深入林地深處，那種令人窒息的不祥感，也愈發逼近。<br>
+  </p>
+<div class="nav-container">
+  <label for="c26" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c28" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content28" class="chapter-content">
+  <h2>碎片</h2>
+  <p>
+　　陽光漸漸西沉，林間的陰影拉得越來越長。維爾不得不放慢腳步。白日裡能為人遮蔭的濃密樹冠，此刻卻將月光也一併隔絕，使得搜尋之路更加艱難。<br>
+　　忽然，他的腳下傳來一陣異樣的觸感。低頭一看，竟是一隻斷掌。維爾心頭猛地一緊，急忙將它拾起細看。直到確認那並不是自己要找的人，他那懸著的心神才稍稍放鬆。<br>
+　　這是一隻女人的手掌，卻明顯屬於年紀不算年輕的人。掌面遍佈深淺不一的傷痕，觸目驚心，仿佛在昭示著她生前飽受折磨。<br>
+　　維爾繼續往更深處走去，很快又發現了更多人體殘肢。更為駭人的是，這些屍塊顯然並非出自同一個受害者，而是來自不同的人。<br>
+  </p>
+<div class="nav-container">
+  <label for="c27" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c29" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content29" class="chapter-content">
+  <h2>成年禮物</h2>
+  <p>
+　　維爾最不願面對的事，終究還是降臨了。<br>
+　　他在一堆枯枝與落葉間，拾起了一枚熟悉的掛墜。那正是他在穌羅阿成年時送給她的禮物。這些年來，她一直將其視作珍寶，幾乎片刻不離身。<br>
+　　如今，這枚掛墜卻靜靜遺落在這片充斥著血腥與殘肢的林地。<br>
+　　一瞬間，憤怒、恐懼、焦急與悲傷如潮水般一齊湧上他的心頭。他的呼吸變得急促，胸口像被烈火灼燒般難以忍受。<br>
+　　維爾再也無法以往常的冷靜來面對這一切。他猛然加快腳步，幾乎是奔跑著，朝林地的更深處衝去。<br>
+  </p>
+  <div class="nav-container">
+    <label for="c28" class="btn btn-prev">← 上一章</label>
+    <label for="home" class="btn btn-home">返回章節列表</label>
+    <label for="c30" class="btn btn-next">下一章 →</label>
+  </div>
+</div>
+
+<div id="content30" class="chapter-content">
+  <h2>野獸</h2>
+  <p>
+　　<strong>（本章包含不下飯內容，斟酌觀看）</strong><br>
+<br>
+　　在林地最幽深的角落，維爾終於看見了一個「人」。<br>
+　　可那詭異的姿態，已經完全不能稱作人類。<br>
+　　那男人渾身赤裸，四肢著地，像畜牲一樣匍匐而行。軀體以一種扭曲異樣的姿勢擺動搖晃，圍繞著某個不明之物不斷兜轉。<br>
+　　很快，維爾意識到，前方並不只是一人。至少七個同樣行為詭異的人，正在同一塊區域繞轉。他們的動作整齊劃一，仿佛被某種邪惡的節奏牽引，宛若進行著不潔的儀式。<br>
+　　剎那間，眾人齊聲狂嚎，瘋狂撲向中央的目標。七具身軀爭搶著，撕咬著，發出野獸般的吼叫與怒吼，彼此甚至互相攻擊。<br>
+　　維爾的眼睛瞬間瞪大。<br>
+　　他看清了——他們正在啃食的，是一具女性的軀體。腹部早已被扯開，內臟與排泄物流滿大地，乳房與私處被生生撕裂成碎肉，黃色的脂肪裸露在外，猙獰而噁心。<br>
+　　胸口的不適感再度翻湧，維爾毫不猶豫，抄起地上一根結實的木棍，衝入其中。<br>
+　　怪物們似乎察覺到不同的氣息，齊聲發出駭人的吼叫，轉而向他衝來。此刻，他們恢復了雙足站立，滿臉覆滿血液、排泄物與殘肉碎渣，猙獰至極。<br>
+　　維爾厭惡至極，迎上第一個男人，木棍猛然砸下，直接打破了頭骨。接著又連續擊倒了四個人。這些東西雖行為詭異，但就像無腦的野獸，只憑本能攻擊，沒有任何技巧可言。<br>
+　　正當他準備解決下一個敵人時，眼前突然一黑。先前被他擊倒在地的四人，竟一個接一個重新爬起，像瘋狗一般將他撲倒。<br>
+　　維爾的心猛然一沉——他明明每一下都下了死手，卻像對方根本感覺不到痛苦，仍舊以瘋狂的姿態纏上了他。<br>
+  </p>
+  <div class="nav-container">
+    <label for="c29" class="btn btn-prev">← 上一章</label>
+    <label for="home" class="btn btn-home">返回章節列表</label>
+    <label for="c31" class="btn btn-next">下一章 →</label>
+  </div>
+</div>
+
+<div id="content31" class="chapter-content">
+  <h2>崩潰</h2>
+  <p>
+　　維爾被撲倒在地，身軀重重砸落。就在這時，他的手臂意外觸碰到一隻逐漸冰冷卻帶著餘溫的手臂。他驚愕地低頭看去，終於看清楚——那具被怪物圍繞、撕扯的軀體，正是他尋找了整整兩天的穌羅阿。<br>
+　　她面目全非，身體早已殘破不堪，血肉模糊，然而她仍有微弱的氣息。當維爾觸碰到她的肌膚時，清楚感受到她的體溫正在一點一滴流失。這意味著，她是在活生生的狀態下遭受折磨至此。<br>
+　　維爾的瞳孔瞬間收縮至極限。怒火、恐懼、悲傷同時爆發，他再也無法克制，朝著那群怪物發出撕心裂肺的嘶吼。那聲音震盪林地，仿佛要將他的理智徹底撕碎。<br>
+　　他的心神，幾乎崩潰。<br>
+  </p>
+  <div class="nav-container">
+    <label for="c30" class="btn btn-prev">← 上一章</label>
+    <label for="home" class="btn btn-home">返回章節列表</label>
+    <label for="c32" class="btn btn-next">下一章 →</label>
+  </div>
+</div>
+
+<div id="content32" class="chapter-content">
+  <h2>永別</h2>
+  <p>
+　　那些詭異的男人緊緊壓制著維爾，獰笑著張開血腥的大口，準備撕裂他的血肉。<br>
+　　然而，突如其來的變化發生了。<br>
+　　一股炙熱的力量從他們體內迅速蔓延，隨即皮膚開始龜裂、溶解。原本力大無窮、近乎瘋狂的身軀，在瞬息之間像失去了骨架的支撐，一個個癱軟倒地，扭曲成血肉模糊的泥漿。尖叫聲此起彼伏，最終歸於死寂。<br>
+　　此刻的維爾，神色已經恢復冷靜，甚至比先前更加冷冽。他的嘴唇微動，低聲吐出詛咒般的話語。<br>
+　　隨後，他回過頭，看向躺在地上、氣息微弱的穌羅阿。那雙眼睛中的深意，藏著無法言喻的情緒，沉重到無人能讀懂。<br>
+　　最終，他緩緩低下頭，在女孩額頭落下輕輕一吻。<br>
+　　「不疼了。」<br>
+　　話音輕若呢喃，卻如審判般沉重。<br>
+　　隨著這一吻，沒有掙扎，沒有聲響，只在靜默間，將她從無盡的苦楚裡解放。隨後伸手輕輕替她闔上雙眼。<br>
+<br>
+　　靈魂就此沉入永夜，再也不會感受到任何痛苦。<br>
+  </p>
+  <div class="nav-container">
+    <label for="c31" class="btn btn-prev">← 上一章</label>
+    <label for="home" class="btn btn-home">返回章節列表</label>
+    <label for="c33" class="btn btn-next">下一章 →</label>
+  </div>
+</div>
+
+<div id="content33" class="chapter-content">
+  <h2>十九年</h2>
+  <p>
+　　結束這場血與痛的屠戮後，維爾緩緩起身。他的目光越過林間的血跡，落在不遠處的兩道身影上。<br>
+　　那並不是普通的人類，而是魔鬼——李林與莉莉姆。<br>
+　　他們的神色顯得無比震驚。因為此刻自維爾身上滲出的壓迫感，他們再熟悉不過。那是屬於某個存在的氣息。<br>
+　　自第二次天界戰爭後，那股曾令天地震顫的力量便消聲匿跡，如今竟在此地重現。祂此刻正以冷冽到令人窒息的眼神，靜靜凝視著他們。<br>
+　　沉默中，祂開口了。<br>
+　　「十九年了。」<br>
+　　聲音低沉，卻像雷鳴一樣震盪在他們耳際。<br>
+　　神智的崩裂，讓祂的神格暫時甦醒。記憶雖仍殘缺不全，但有一件事卻清晰浮現。<br>
+　　祂想起了李林與莉莉姆的詛咒——每十九年便會再度肆虐於大地，凡屬紅海的疆域，無一能倖免。<br>
+　　而拿巴一家慘死的時間點，正巧落在十九年前。<br>
+  </p>
+  <div class="nav-container">
+    <label for="c32" class="btn btn-prev">← 上一章</label>
+    <label for="home" class="btn btn-home">返回章節列表</label>
+    <label for="c34" class="btn btn-next">下一章 →</label>
+  </div>
+</div>
+
+<div id="content34" class="chapter-content">
+  <h2>再臨</h2>
+  <p>
+　　三者在林地深處爆發無可避免的激烈惡戰。<br>
+　　按理說，幾乎被奪去全部力量的祂，應該難以與魔鬼匹敵。然而，在盛怒之下，祂就像解除了隱藏的枷鎖，每一次攻擊都蘊含毀天滅地的力量。幾個回合下來，李林與莉莉姆竟毫無優勢。<br>
+　　怒焰與黑霧翻湧而起，無聲的憤怒震裂了大地，聲勢如雷霆轟擊蒼穹。祂僅僅一抬手，光與夜便交錯翻轉，硬生生逼退了魔鬼的巨爪。<br>
+　　魔鬼嘶吼，將背後的翼角化作觸手，瘋狂伸展，試圖將祂的軀體束縛。可祂猛然怒擊，那些扭動的觸手瞬間斷裂，連同魔鬼的翼角一併被扯下。鮮血四濺，如同驟雨傾盆，將大地染紅。<br>
+　　每一次衝撞都帶來震耳欲聾的轟鳴，天地彷彿被強行撕裂出縫隙般劇烈顫抖。<br>
+　　最終，魔鬼們被重創。就在祂即將給予致命一擊之時，卻突然停下——因為人類的軀體開始崩潰，已無法再承受這股駭人的力量。<br>
+　　李林瞥見這生死瞬間的破綻，立刻抓住莉莉姆，帶著她一同遁回地獄。<br>
+　　不久之後，維爾的身體徹底支撐不住，重重倒下，陷入昏迷。<br>
+  </p>
+  <div class="nav-container">
+    <label for="c33" class="btn btn-prev">← 上一章</label>
+    <label for="home" class="btn btn-home">返回章節列表</label>
+    <label for="c35" class="btn btn-next">下一章 →</label>
+  </div>
+</div>
+
+<div id="content35" class="chapter-content">
+  <h2>眷屬</h2>
+  <p>
+　　太陽緩緩升起，晨光落在維爾精緻的臉龐上，將他從昏睡中喚醒。<br>
+　　他緩緩坐起，目光掃過四周，滿地都是斷裂與焦黑的痕跡，整個林地殘破不堪。然而，他對昨夜的事情卻毫無印象，腦海中一片空白。<br>
+　　穌羅阿的身體靜靜地躺在不遠處，卻與昨夜記憶中的殘骸不同——她完好如初，仿佛只是陷入安詳的睡夢之中。<br>
+　　維爾呆呆地凝視著她，看了許久，眼神裡滿是空洞與渴望，彷彿只要不移開視線，她就能再次睜開眼睛。<br>
+　　良久，他才注意到自己身旁，那道不知何時出現的漆黑身影。<br>
+　　「你是誰？」他的語氣平穩，聲音卻異常輕微。<br>
+　　那男人留著山羊鬍，一頭烏黑而卷翹的長髮垂落肩頭，左眼上方有一道醒目的舊疤。英氣的面容上，卻盡是掩不住的喜悅。<br>
+　　「找到您了，我的主人。」<br>
+  </p>
+  <div class="nav-container">
+    <label for="c34" class="btn btn-prev">← 上一章</label>
+    <label for="home" class="btn btn-home">返回章節列表</label>
+    <label for="c36" class="btn btn-next">下一章 →</label>
+  </div>
+</div>
+
+<div id="content36" class="chapter-content">
+  <h2>神經病</h2>
+  <p>
+　　男人自稱巴力，上來便說了一大堆莫名其妙的話。什麼神不神、鬼不鬼，甚至說那鼎鼎大名的悪神格利亞竟是維爾自己。維爾聽得一頭霧水，只當對方是個神經病。<br>
+　　他將注意力放回到穌羅阿身上，替她整理好儀容，心裡暗自準備為她處理後事。但無論他怎麼冷眼以對，那個奇怪的男人卻始終不肯離開，一直緊緊跟著。<br>
+　　「請讓我協助您。」漆黑的惡魔再次開口。<br>
+　　維爾滿臉黑線，語氣不耐，沒好氣地讓祂既然真有能耐，就把這一地血肉收拾乾淨。<br>
+　　沒想到巴力二話不說，竟在瞬息之間輕易完成了交辦的任務。<br>
+　　這讓原本毫不在意的維爾也不由得皺起了眉頭。他沒有再多說什麼，只是沉默著，默許這個詭異的男人繼續跟在自己身邊。<br>
+  </p>
+  <div class="nav-container">
+    <label for="c35" class="btn btn-prev">← 上一章</label>
+    <label for="home" class="btn btn-home">返回章節列表</label>
+    <label for="c37" class="btn btn-next">下一章 →</label>
+  </div>
+</div>
+
+<div id="content37" class="chapter-content">
+  <h2>迷途</h2>
+  <p>
+　　當穌羅阿的後事處理妥當後，維爾再沒有理由繼續停留在這片土地上。<br>
+　　他原本便是孤寂之人，然而這些年來，至少還有穌羅阿在身邊，能陪他說話，能等待他歸來。如今，連這最後的羈絆也徹底斷去。<br>
+　　再次走上旅途時，他的腳步沒有方向，心中更是空洞無依。<br>
+　　維爾對這個世界已不抱任何期望。他不再想與任何人有瓜葛，不願再承受失去的痛苦。於是，他決定將自己與外界徹底隔絕，獨自行走在無邊的孤寂之中。<br>
+  </p>
+  <div class="nav-container">
+    <label for="c36" class="btn btn-prev">← 上一章</label>
+    <label for="home" class="btn btn-home">返回章節列表</label>
+    <label for="c38" class="btn btn-next">下一章 →</label>
+  </div>
+</div>
+
+<div id="content38" class="chapter-content">
+  <h2>虎視眈眈</h2>
+  <p>
+　　惡魔首先開口，提出能夠幫助維爾免受世間的糾纏與紛擾。然而，維爾連眼神都懶得分給祂，只是冷冷無視。<br>
+　　那個平時總是帶著紳士笑容的存在，忽然收起了輕佻的神態，神情變得嚴肅。祂終於吐露出自己真正的憂慮。<br>
+　　巴力能夠找到維爾，完全是因為那場惡戰釋放出的龐大能量。那股氣息並非只有祂感知到，也已經引來了無數覬覦的目光。<br>
+　　在當日感受到格利亞的氣息後，祂立刻趕赴現場。抵達時看到的，便是維爾已經昏倒在血與殘骸中，周遭滿目瘮人的慘象。於是，祂當即布下結界，將那股氣息徹底封鎖，隔絕外界窺探。<br>
+　　這幾日，他始終在維爾身邊，做著同樣的事。<br>
+　　作為最強大的惡魔之一，巴力的結界幾乎牢不可破。唯有與他同樣強大，甚至超越他的天使或惡魔，才可能將之撕裂。然而那樣的存在，屈指可數。換言之，只要在這結界之內，安全便能得到極大程度的保障。<br>
+  </p>
+  <div class="nav-container">
+    <label for="c37" class="btn btn-prev">← 上一章</label>
+    <label for="home" class="btn btn-home">返回章節列表</label>
+    <label for="c39" class="btn btn-next">下一章 →</label>
+  </div>
+</div>
+
+<div id="content39" class="chapter-content">
+  <h2>守護</h2>
+  <p>
+　　維爾自不可能輕信一個陌生人。雖然那天的經歷確實出乎意料，但對於巴力所言，他最多只願意信上一半。<br>
+　　然而，眼前的一切早已徹底擊碎了他的心志。即便其中存在欺瞞與算計，他也不再在乎。<br>
+　　維爾告訴惡魔，他將回到穌羅阿長眠的那片林地，在那裡獨自生活，與世隔絕，再不與外界有任何瓜葛。<br>
+　　巴力對這樣的選擇顯得十分愉悅。他在林地四周布下堅不可破的結界，又於其中築起一座雅緻的平房，還為愛花的主人營造了一座小小的花園。<br>
+　　自格利亞消失以來，巴力獨自守望著那座屬於祂花園，如今終於能讓這些沉默已久的花朵再度歸回主人身邊。<br>
+　　從此，那片林地便成了維爾唯一的歸宿。對外人而言，即便誤入其中，眼中所見仍是原始的寂靜林地，彷彿從未有過任何人跡與變故。<br>
+　　而維爾，將長久留在那裡，靜靜陪伴他的女孩。<br>
+  </p>
+  <div class="nav-container">
+    <label for="c38" class="btn btn-prev">← 上一章</label>
+    <label for="home" class="btn btn-home">返回章節列表</label>
+    <label for="c40" class="btn btn-next is-disabled">下一章 →</label>
+  </div>
+</div>
+
+
+</div>
