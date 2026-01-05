@@ -1,0 +1,683 @@
+<div class="chapters" style="font-family:'Noto Sans TC',sans-serif; line-height:1.8; font-size:16px;">
+
+<script>
+  // 綁定所有 label
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("label").forEach(label => {
+    /*document.querySelectorAll("label:not([for='home'])").forEach(label => {*//*如果要排除返回章節列表用這條*/
+      label.addEventListener("click", () => {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      });
+    });
+  });
+</script>
+
+<style>
+ body {
+    user-select: none;              /* 標準 */
+    -webkit-user-select: none;      /* Chrome, Safari */
+    -moz-user-select: none;         /* Firefox */
+    -ms-user-select: none;          /* IE/Edge */
+  }
+::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+  .chapters input { display:none; }
+  .chapter-list, .chapter-content { display:none; }
+
+  /* 預設顯示章節列表 */
+  #home:checked ~ .chapter-list { display:grid; }
+
+  /* 顯示對應章節內容 */
+  #c1:checked ~ #content1,
+  #c2:checked ~ #content2,
+  #c3:checked ~ #content3,
+  #c4:checked ~ #content4,
+  #c5:checked ~ #content5,
+  #c6:checked ~ #content6,
+  #c7:checked ~ #content7,
+  #c8:checked ~ #content8,
+  #c9:checked ~ #content9,
+  #c10:checked ~ #content10,
+  #c11:checked ~ #content11,
+  #c12:checked ~ #content12,
+  #c13:checked ~ #content13,
+  #c14:checked ~ #content14,
+  #c15:checked ~ #content15,
+  #c16:checked ~ #content16,
+  #c17:checked ~ #content17,
+  #c18:checked ~ #content18,
+  #c19:checked ~ #content19,
+  #c20:checked ~ #content20,
+  #c21:checked ~ #content21,
+  #c22:checked ~ #content22,
+  #c23:checked ~ #content23,
+  #c24:checked ~ #content24,
+  #c25:checked ~ #content25,
+  #c26:checked ~ #content26,
+  #c27:checked ~ #content27,
+  #c28:checked ~ #content28,
+  #c29:checked ~ #content29,
+  #c30:checked ~ #content30,
+  #c31:checked ~ #content31,
+  #c32:checked ~ #content32,
+  #c33:checked ~ #content33,
+  #c34:checked ~ #content34,
+  #c35:checked ~ #content35,
+  #c36:checked ~ #content36,
+  #c37:checked ~ #content37,
+  #c38:checked ~ #content38,
+  #c39:checked ~ #content39,
+  #c40:checked ~ #content40,
+  #c41:checked ~ #content41,
+  #c42:checked ~ #content42,
+  #c43:checked ~ #content43,
+  #c44:checked ~ #content44,
+  #c45:checked ~ #content45,
+  #c46:checked ~ #content46,
+  #c47:checked ~ #content47,
+  #c48:checked ~ #content48,
+  #c49:checked ~ #content49,
+  #c50:checked ~ #content50 { display:block; }
+
+
+
+  /* 章節列表改為二欄 */
+  .chapter-list {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px 20px; /* 行間距、列間距 */
+    margin-top: 1em;
+  }
+
+  .chapters label {
+    display:block;
+    cursor:pointer;
+    padding:8px;
+    border:1px solid #ccc;
+    border-radius:4px;
+    text-align:center;
+    font-weight:bold;
+    color:#353535;
+    background:#fff;
+  }
+  .chapters label:hover { background:#f5f5f5; color:#353535; }
+
+  .nav-container{        /* 按鈕 */
+    margin-top:20px;
+    display:grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items:center;
+    width:100%;
+    gap:0;
+  }
+  .btn{
+    display:inline-block;
+    cursor:pointer;
+    padding:6px 12px;
+    border:1px solid #ccc;
+    border-radius:4px;
+    background:#f9f9f9;
+    color:#0066cc;
+    font-weight:bold;
+    text-align:center;
+  }
+  .btn:hover{ background:#eef; color:#cc0000; }
+
+  /* 對齊到三個欄位 */
+  .btn-prev{ justify-self:start; }
+  .btn-home{ justify-self:center; }
+  .btn-next{ justify-self:end; }
+
+  /* 沒有上一/下一章時用這個：保留寬度、不響應點擊 */
+  .is-disabled{
+    visibility:hidden;        /* 看不到但保留空間 → 版位不動 */
+    pointer-events:none;      /* 禁用點擊 */
+  }
+</style>
+
+<!-- radio 控制 -->
+<input type="radio" name="page" id="home" checked>
+<input type="radio" name="page" id="c1">
+<input type="radio" name="page" id="c2">
+<input type="radio" name="page" id="c3">
+<input type="radio" name="page" id="c4">
+<input type="radio" name="page" id="c5">
+<input type="radio" name="page" id="c6">
+<input type="radio" name="page" id="c7">
+<input type="radio" name="page" id="c8">
+<input type="radio" name="page" id="c9">
+<input type="radio" name="page" id="c10">
+<input type="radio" name="page" id="c11">
+<input type="radio" name="page" id="c12">
+<input type="radio" name="page" id="c13">
+<input type="radio" name="page" id="c14">
+<input type="radio" name="page" id="c15">
+<input type="radio" name="page" id="c16">
+<input type="radio" name="page" id="c17">
+<input type="radio" name="page" id="c18">
+<input type="radio" name="page" id="c19">
+<input type="radio" name="page" id="c20">
+<input type="radio" name="page" id="c21">
+<input type="radio" name="page" id="c22">
+<input type="radio" name="page" id="c23">
+<input type="radio" name="page" id="c24">
+<input type="radio" name="page" id="c25">
+<input type="radio" name="page" id="c26">
+<input type="radio" name="page" id="c27">
+<input type="radio" name="page" id="c28">
+<input type="radio" name="page" id="c29">
+<input type="radio" name="page" id="c30">
+<input type="radio" name="page" id="c31">
+<input type="radio" name="page" id="c32">
+<input type="radio" name="page" id="c33">
+<input type="radio" name="page" id="c34">
+<input type="radio" name="page" id="c35">
+<input type="radio" name="page" id="c36">
+<input type="radio" name="page" id="c37">
+<input type="radio" name="page" id="c38">
+<input type="radio" name="page" id="c39">
+<input type="radio" name="page" id="c40">
+<input type="radio" name="page" id="c41">
+<input type="radio" name="page" id="c42">
+<input type="radio" name="page" id="c43">
+<input type="radio" name="page" id="c44">
+<input type="radio" name="page" id="c45">
+<input type="radio" name="page" id="c46">
+<input type="radio" name="page" id="c47">
+<input type="radio" name="page" id="c48">
+<input type="radio" name="page" id="c49">
+<input type="radio" name="page" id="c50">
+
+
+
+
+<!-- 章節列表 -->
+<div class="chapter-list">
+  <label for="c1">魔王格利亞</label>
+  <label for="c2">魔女與惡魔之子</label>
+  <label for="c3">傲慢的路西法</label>
+  <label for="c4">愚蠢的人類</label>
+  <label for="c5">魔鬼巴力</label>
+  <label for="c6">割裂</label>
+  <label for="c7">覬覦</label>
+  <label for="c8">大洪水</label>
+  <label for="c9">原罪</label>
+  <label for="c10">撒斯姆與噬魂花</label>
+  <label for="c11">預言</label>
+  <label for="c12">遊戲</label>
+  <label for="c13">紅海</label>
+  <label for="c14">魔王出遊</label>
+  <label for="c15">惡魔眼中的悪神</label>
+  <label for="c16">致命匕首</label>
+  <label for="c17">巴力的詛咒</label>
+  <label for="c18">泥巴人</label>
+  <label for="c19">厄運纏身的女孩</label>
+  <label for="c20">以物換物</label>
+  <label for="c21">談笑</label>
+  <label for="c22">心聲</label>
+  <label for="c23">存在的價值</label>
+  <label for="c24">做個了斷</label>
+  <label for="c25">信仰之力</label>
+  <label for="c26">戰爭</label>
+  <label for="c27">收官</label>
+  <label for="c28">得到答案</label>
+  <label for="c29">結局</label>
+</div>
+
+<!-- 章節內容 -->
+<div id="content1" class="chapter-content">
+  <h2>魔王格利亞</h2>
+  <p>
+　　墜入地獄之後，格利亞已與過去判若兩人。那場戰爭中，他雖解放了長久以來被束縛的力量，但身上也烙下了印痕。他深愛的分身，卻因為泥土所造的人類，而對他生出疑心，最終拋棄了他。這份背叛與隔閡，帶來了無盡的痛苦、憤怒與憎恨，使他逐漸變得傲慢而邪惡。<br>
+　　格利亞不再需要人類的信仰。只要人類心中滋生邪惡的念頭，或在精神脆弱時被負面情緒籠罩，這一切都會化作祂的力量。<br>
+　　自人類獲得智慧後，他們開始彼此算計，為了利益爭奪不休。這樣的爭鬥與黑暗，讓格利亞的力量日益增長，愈加強大。<br>
+  </p>
+<div class="nav-container">
+  <label for="c0" class="btn btn-prev is-disabled">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c2" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content2" class="chapter-content">
+  <h2>魔女與惡魔之子</h2>
+  <p>
+　　在墜入地獄之前，薩麥爾便將徘徊於紅海的莉莉絲一同帶入深淵。自此，莉莉絲成為薩麥爾的妻子，並誕下惡魔之子——李林與利利姆。<br>
+　　然而，莉莉絲從未忘記雅威曾屠戮自己子嗣的仇恨。對她而言，那份痛苦始終如烙印般存在。格利亞則允許她在黑夜中行動，奪走人類嬰兒的性命。<br>
+  </p>
+<div class="nav-container">
+  <label for="c1" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c3" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content3" class="chapter-content">
+  <h2>傲慢的路西法</h2>
+  <p>
+　　在所有墮落的天使之中，路西法顯得最為驕傲與自信。他的墮天，並非因為追隨格利亞，而是因為堅信自身的力量足以與神匹敵，甚至能將神推翻。他拒絕向任何人屈服，格利亞亦在其中，不例外。<br>
+　　然而，與格利亞不同的是，路西法自內心深處便厭惡那些由泥土捏造的人類。他的憎惡並非出於一時，而是本質中根深蒂固的厭棄。格利亞對此心知肚明，但選擇沉默，並未加以干涉。 <br>
+ </p>
+<div class="nav-container">
+  <label for="c2" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c4" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content4" class="chapter-content">
+  <h2>愚蠢的人類</h2>
+  <p>
+　　紅海之畔，亞當與莉莉絲的後代繁衍不息。經過數代傳承，人類的數量急劇增加。格利亞看在眼裡，對此十分滿意。<br>
+　　然而，隨著人類數量的增長，他們之間的爭執也日益激烈。從最初的個體與個體之間的矛盾，逐漸演變為族群對族群的衝突，最終發展成大規模的戰爭。<br>
+　　愚蠢——這是格利亞對此時人類的評價。<br>
+　　在祂眼中，正因為人類弱小，他們才需要智慧；只有將智慧凝聚起來，才能真正變得強大。然而，如今的人卻為了幾隻牲畜、幾塊土地、甚至為了女人而爭執不休。<br>
+　　天界之上，雅威也在注視紅海的動盪，祂的心中感到無比頭疼與沉重。<br>
+  </p>
+<div class="nav-container">
+  <label for="c3" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c5" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content5" class="chapter-content">
+  <h2>魔鬼巴力</h2>
+  <p>
+　　自從與雅威決裂之後，巴力成為格利亞最為重要的親信。當初將艾爾格里亞引領至地獄的，正是祂。與路西法不同，巴力的墮天並非出於傲慢，而是出於對艾爾格里亞的追隨與尊敬。<br>
+　　在還是熾天使的時候，巴力曾經狂妄且自大，甚至妄圖超越神明本身。然而，最終艾爾格里亞親手奪去了祂的一隻翅膀。<br>
+　　去一翼成為巴力的代價，而這個代價，也換來了祂從神之手中獲得的唯一一次機會。<br>
+  </p>
+<div class="nav-container">
+  <label for="c4" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c6" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content6" class="chapter-content">
+  <h2>割裂</h2>
+  <p>
+　　魔王格利亞，其性情在眾惡魔眼中總是難以捉摸。許多曾與祂接觸的惡魔都一致認為，祂的性格陰晴不定，變幻無常。<br>
+　　自從墮落之後，祂的精神不再穩固。當祂作惡之時，便壞得徹底，整個地獄中無人能比祂更為殘酷惡劣。可當祂展現善意時，卻又宛若大聖人一般。甚至連人類都無法想像，這位令他們恐懼的魔鬼之首，竟然比上帝雅威還要慈悲，對眾生表現出異樣的溫柔。<br>
+  </p>
+<div class="nav-container">
+  <label for="c5" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c7" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content7" class="chapter-content">
+  <h2>覬覦</h2>
+  <p>
+　　某日，路西法途經格利亞的花園，兩者正面相遇。氣氛如往常一般充滿著不屑與冷意。<br>
+　　「有時間嗎？」<br>
+　　「大人，請原諒我。」然而，路西法的眼神中卻只有冰冷。<br>
+　　「我知道祢所覬覦的東西，但此刻我還無法將它交出來。」<br>
+　　至於後續二人交談了什麼，無人得知。只知道，在那之後，路西法暫時安靜了下來。<br>
+  </p>
+<div class="nav-container">
+  <label for="c6" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c8" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content8" class="chapter-content">
+  <h2>大洪水</h2>
+  <p>
+　　雅威見到世上的人類已經失控，心意便定下，用洪水來毀滅這些惡人。然而，祂發現在人間尚有一位名叫諾亞的好人，乃是亞當的後代。<br>
+　　神指示諾亞建造一艘巨大的方舟，並囑咐他帶著妻子、兒子與兒媳一同登船。諾亞的妻子正是莉莉絲的後裔。與此同時，神也吩咐他將各類牲畜與飛鳥都帶上方舟，並確保雌雄成雙。<br>
+　　當洪水退去後，人類成為新的族群，體內同時流淌著善與惡的血脈。他們既能善良，也能墮落。<br>
+　　最後，雅威以虹霓作為立約的記號，宣告祂不再因人的緣故詛咒大地，並允諾萬物的存續與繁衍，永不停息。<br>
+  </p>
+<div class="nav-container">
+  <label for="c7" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c9" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content9" class="chapter-content">
+  <h2>原罪</h2>
+  <p>
+　　李林與利利姆的存在，宛如詛咒一般。無論祂們將目光落在哪裡，那裡便再無寧日。<br>
+　　祂們能夠操縱人心，使人們彼此自相殘殺；或是親自沉溺於殺戮的樂趣之中。當鮮血染遍大地，祂們便吞噬那些亡者的靈魂。這樣的遊戲會持續進行，直至自身感到厭倦。<br>
+　　對於李林與利利姆而言，這些生靈是否本就邪惡，已毫無意義。祂們所追求的，僅僅是血腥帶來的快感與滿足。<br>
+  </p>
+<div class="nav-container">
+  <label for="c8" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c10" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content10" class="chapter-content">
+  <h2>撒斯姆與噬魂花</h2>
+  <p>
+　　「我在天界的時候，曾有一位使徒獻給我這樣的花朵，特別奪目。」<br>
+　　「可你看，生於紅海的它，還是不夠好。」<br>
+　　格利亞伸手撫過花瓣，那花朵在瞬間便枯萎凋謝。<br>
+　　「你聽說過嗎？靈魂才是最滋潤的養分。」<br>
+　　「幫助我吧，撒斯姆。」<br>
+　　撒斯姆應允，為花朵賜下一段詛咒。凡是人類一旦觸碰此花，就會被它吸引，隨即靈魂被花奪去，化作養分。而這些養分最終將回歸格利亞。<br>
+　　格利亞對此十分滿意，為其取名「Avdót」。自此，這種花朵被視為悪神的化身，專門吞食人類靈魂的花。<br>
+  </p>
+<div class="nav-container">
+  <label for="c9" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c11" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content11" class="chapter-content">
+  <h2>預言</h2>
+  <p>
+　　根據歐若博司的預言，雅威與格利亞之間，終將迎來一場無可避免的戰爭。在那場衝突之中，勢必有一方將失去一切。<br>
+　　而巴拉姆的預言更進一步指出，那將會是人類與靈界歷史上最為慘烈的一場戰爭，死傷之數將達到前所未有的規模。<br>
+　　然而，面對這樣的預兆，格利亞卻表現得異常平淡，彷彿這一切早已在祂的心中成為既定的必然。<br>
+ </p>
+<div class="nav-container">
+  <label for="c10" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c12" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content12" class="chapter-content">
+  <h2>遊戲</h2>
+  <p>
+　　格利亞的信徒向祂虔誠祈禱，盼望能得到魔鬼的庇護。格利亞十分清楚，凡是信仰祂的惡神之人，多半並非良善之輩。對於這種人，祂本就看不上眼，但若拿來打發時間，也不失為一種樂趣。<br>
+　　是祂告訴信徒，只要在次日清晨六時前，殺死六個人，用他們的鮮血在空地上繪製出一個六芒星魔法陣並進行祈禱，便能召喚出惡魔為其效力。<br>
+　　那人果然依照所說，連殺六人，畫下血之六芒星，虔心祈禱。最終，他成功召喚出了惡魔。普爾森先是替他殺盡了那些欲加害於他的人，隨後卻轉過身來，將他一同斬殺。<br>
+  </p>
+<div class="nav-container">
+  <label for="c11" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c13" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content13" class="chapter-content">
+  <h2>紅海</h2>
+  <p>
+　　格利亞帶著巴力，一同化作人形，踏上紅海的土地。祂說，自己想要一些「玩具」。<br>
+　　明明身為神祇，只需一個念頭，便能創造出任何自己所欲之物。更何況，紅海的一切對祂們而言幾乎沒有任何實際價值。然而，格利亞卻執意要來。祂認為，正因為不完美，才別具可貴之處。於是祂堅持要親自來看一看。<br>
+  </p>
+<div class="nav-container">
+  <label for="c12" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c14" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content14" class="chapter-content">
+  <h2>魔王出遊</h2>
+  <p>
+　　格利亞看見一名人類男孩，手中握著一把木製匕首，正與其他孩子一同遊戲。<br>
+　　「就那個。」祂指著那匕首。<br>
+　　原來祂要的玩具，真的只是玩具。<br>
+　　祂與巴力走近，發現孩群之中，還有一個女孩蜷縮在地，雙手抱頭，看起來正遭受欺凌。<br>
+　　「這個可以給我嗎？」格利亞問道。<br>
+　　然而孩子們全然無視。祂依舊微笑，眼神卻冷漠無波，再次開口，聲音沉靜卻堅定：<br>
+　　「給我。」<br>
+　　這一次，孩子們以白眼回應，其中甚至有一人直接朝祂們吐了一口唾沫。<br>
+  </p>
+<div class="nav-container">
+  <label for="c13" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c15" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content15" class="chapter-content">
+  <h2>惡魔眼中的悪神</h2>
+  <p>
+　　普爾森原本是位高位天使，卻因犯下罪行而墮落。<br>
+　　他無法理解格利亞，在他眼中，這位悪神就是個徹頭徹尾的瘋子。格利亞對人類總是展現出無比的溫柔，但這份溫柔之下，卻能將人折磨得生不如死。<br>
+　　祂憐憫人類，卻從未真正停止過殺戮。祂對任何事物都顯得興趣缺缺，唯一的例外就是雅威。不僅是人類，就連惡魔與天使，在祂眼裡也僅僅是可以隨手把玩的玩具。<br>
+　　然而普爾森卻並不太在意。畢竟，殺戮的快感本身就足夠讓祂沉溺。至於其他的一切，與祂毫無干係。<br>
+  </p>
+<div class="nav-container">
+  <label for="c14" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c16" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content16" class="chapter-content">
+  <h2>致命匕首</h2>
+  <p>
+　　手握木匕首的男孩最先出現異狀。他的鼻腔開始流血，接著眼睛、嘴巴與耳朵皆湧出暗紅色的血液，甚至連皮膚的縫隙中也開始滲透而出。<br>
+　　血液迅速腐蝕他的身體，他痛苦地嚎叫，面容逐漸猙獰，直至變得駭人可怖，宛如活屍。驚恐之下，他望向身邊的同伴，眼神中滿是對救贖的渴望。可惜其他孩子早已被嚇破了膽，四散奔逃，沒有人敢伸出援手。<br>
+　　最終，男孩的身體完全潰爛，化作一攤血肉模糊的殘骸。<br>
+　　「千方百計施以你們智慧，怎麼就是聽不懂。明明我說的是同一個語言吧？」<br>
+　　格利亞俯身，從血水中拾起那柄匕首，臉上浮現出極為滿意的神情。<br>
+  </p>
+<div class="nav-container">
+  <label for="c15" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c17" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content17" class="chapter-content">
+  <h2>巴力的詛咒</h2>
+  <p>
+　　那名受欺負的女孩，被眼前突如其來的慘劇嚇得失去了所有反應能力。她哭喊不止，雙腿因極度驚懼而癱軟，根本無法逃離現場。格利亞與巴力卻對這個可憐的孩子全然不理，徑直離開。<br>
+　　至於那些倉皇逃走的孩子們，他們並沒有真正脫險。當他們回到村子時，早已將恐怖的詛咒帶回。數月之內，一場瘟疫蔓延開來，幾乎將整個村莊徹底摧毀。<br>
+  </p>
+<div class="nav-container">
+  <label for="c16" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c18" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content18" class="chapter-content">
+  <h2>泥巴人</h2>
+  <p>
+　　格利亞尋覓了一整日，除了那把木製匕首，其他事物都未能引起祂的興趣。倒是在人間見過許多醜惡嘴臉之後，祂對人類的厭惡又更深了一層。自從祂捨棄神格以後，人類這種存在在祂眼中變得愈發不堪，幾乎看哪裡都不順眼。於是祂低聲咒詛那些祂認為沒有存在價值的人。<br>
+　　正當祂準備離去之時，忽然在剛才經過的森林裡，察覺到一股不尋常的氣息，那氣息中滲透著濃重的邪惡。祂心中浮現疑問：那裡是否隱藏著什麼有趣的東西？於是本能驅使祂循著氣息，前去一探究竟。<br>
+  </p>
+<div class="nav-container">
+  <label for="c17" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c19" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content19" class="chapter-content">
+  <h2>厄運纏身的女孩</h2>
+  <p>
+　　在森林深處，一個男人將一個女孩撲倒在地，企圖施行惡行。定睛一看，格利亞才發現，那女孩竟是先前在孩子們中被欺凌的那一個。<br>
+　　男人手中的武器劃過，割破了女孩右眼旁的肌膚，鮮血隨之淌下。<br>
+　　短短一天之內，這孩子兩度遭難，偏偏又都落在格利亞與巴力的眼前。難不成真是因為方才沾染了他們的晦氣？但格利亞雖是惡神，倒也沒有時刻散播詛咒的習慣，這一切顯得異常詭譎。<br>
+　　巴力心中暗自好奇。<br>
+　　「那個男人。」——言下之意，這正是合適的肥料。<br>
+　　隨即，木質匕首刺入男子的頸部。格利亞握著它首將男人拽起，男人瞬間氣絕。<br>
+　　最後，祂將女孩交給巴力。<br>
+  </p>
+<div class="nav-container">
+  <label for="c18" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c20" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content20" class="chapter-content">
+  <h2>以物換物</h2>
+  <p>
+　　格利亞上前，向女孩伸出手，索要她身上那件破爛的斗篷。<br>
+　　「這個可以給我嗎？」祂輕聲問道。<br>
+　　女孩一愣，尚未回過神來。隨即，她搖著頭，淚水不斷落下，身體因驚懼而顫抖，滿心恐懼眼前的兩個陌生人，唯恐自己也會步上先前那些倒下之人的後塵。<br>
+　　「這樣啊，那我們交換吧。」<br>
+　　格利亞的語氣出奇地溫柔。祂褪下自己身上的斗篷，披在她半裸的身軀之上。這件斗篷附著著格利亞的神力，不僅能為她提供庇護，甚至足以讓那些不夠強大的靈體不敢接近。<br>
+　　隨後，祂們帶著女孩留下的那塊破爛斗篷，轉身離去。<br>
+  </p>
+<div class="nav-container">
+  <label for="c19" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c21" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content21" class="chapter-content">
+  <h2>談笑</h2>
+  <p>
+　　幕之下，格利亞依舊與巴力飲酒作樂。自從捨棄神格後，他的內心便長久籠罩在抑鬱與寡歡之中。除了與巴力共處的時光，他總顯得孤獨。<br>
+　　他隨手把玩著白日所得的木匕首。這東西做工粗糙，完全不像精緻的兵器，反而更像是父親隨意削給孩子的玩具。<br>
+　　「你說，我真如世人所說的性格惡劣？」<br>
+　　「偶爾吧。」<br>
+　　「我倒是比較注重細節。」<br>
+　　隨著他的手指拂過，匕首的線條逐漸變得平滑，刀身上甚至多出了幾道精細的紋飾。<br>
+　　「那個男人的氣味嗎？」<br>
+　　「戰爭與屠殺這種事，就留給那些傢伙去玩吧。我還是對玩具比較有興趣。」<br>
+　　「您這只是單純的惡趣味罷了。」<br>
+　　格利亞笑了，但沒有回話。<br>
+  </p>
+<div class="nav-container">
+  <label for="c20" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c22" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content22" class="chapter-content">
+  <h2>心聲</h2>
+  <p>
+　　格利亞將匕首細心整理後，遞給巴力。刀身上，已被刻上一株精緻的藍花參。<br>
+　　「有點無趣了，給祢留作紀念吧！」<br>
+　　「成了把藝術品。」巴力端詳著它，隨口答道。<br>
+　　格利亞低聲笑了笑：「人類總是認為神是完美的，不是嗎？」<br>
+　　巴力卻搖頭反駁：「人類只願意看對他們有利的部分。」<br>
+　　「但有些事情，總得由誰來做。」<br>
+　　「您真打算這麼做？」<br>
+　　「我只是希望，大家都能獲得幸福而已。」<br>
+  </p>
+<div class="nav-container">
+  <label for="c21" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c23" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content23" class="chapter-content">
+  <h2>存在的價值</h2>
+  <p>
+　　自上次大洪水之後，人類似乎早已忘卻教訓。腐敗的人性散發著令人作嘔的酸臭氣息，讓格利亞心中充滿厭惡。<br>
+　　真是一群廢物。明明曾經給予過他們獲得智慧的機會，但他們卻依舊證明了自己毫無存在的價值。<br>
+　　如果祢依然懼怕人類會動搖祢的地位，那麼由我來替祢將他們徹底剷除也無妨。<br>
+<br>
+　　<strong>——這樣我們是不是就能回到從前？</strong><br>
+<br>
+　　「讓我看看現在的祢有多少決心守護祢的子民吧，偉大的神。」<br>
+  </p>
+<div class="nav-container">
+  <label for="c22" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c24" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content24" class="chapter-content">
+  <h2>做個了斷</h2>
+  <p>
+　　格利亞公開揚言，七天後將展開屠殺，把所有人類葬送殆盡。屆時，他們的亡靈將一同墜入地獄，永遠無法得到淨化。<br>
+　　得知此事的雅威怒火中燒，心知若不與魔界開戰，便無以阻止這場浩劫。祂決定先發制人，命米迦勒作為先鋒，率領天軍直入地獄。於是，史無前例的驚世大戰爆發。<br>
+　　在天使與惡魔激烈廝殺之時，雅威與格利亞終於再次相遇。與四周血戰的使徒們不同，祂們平靜而冷冽並，未立刻動手，而是開口交談。<br>
+　　「住手吧，格利亞。」<br>
+　　「要我不肯呢？」<br>
+　　「那就沒什麼好說了。」<br>
+  </p>
+<div class="nav-container">
+  <label for="c23" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c25" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content25" class="chapter-content">
+  <h2>信仰之力</h2>
+  <p>
+　　兩位神祇的交戰激烈而漫長，雙方實力幾乎不分上下，誰也不曾在氣勢上退讓半步。<br>
+　　在當初分割出艾爾格里亞之時，雅威因憂此事的發生，特意將祂的一部分力量封印。然而在這場天界大戰中，這道封印卻因意外而被破壞。<br>
+　　原本，艾爾格里亞的精神力量尚不足以與本體匹敵，但自從墮落以來，祂長期吸收人類心中的惡意，如今的格利亞已經強大到甚至足以殺死雅威。<br>
+　　戰爭持續之中，兩位神祇廝殺不止，所過之處，天使與惡魔成片倒下，連人類也被波及其中。正如巴拉姆的預言，那場災難成為歷史上死傷最為慘烈的戰役。<br>
+  </p>
+<div class="nav-container">
+  <label for="c24" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c26" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content26" class="chapter-content">
+  <h2>戰爭</h2>
+  <p>
+　　戰鬥持續了極長的一段時間，天界、紅海、乃至地獄的空氣中，都瀰漫著揮之不去的血腥氣息。<br>
+　　這一次的局勢與上次截然不同——佔據上風的，是魔鬼。祂們不僅大肆屠殺天使，甚至將其屍骸吞噬，以此吸收並增強自身的力量。<br>
+　　於是，這場戰爭便以最恐怖的方式延續下去，愈演愈烈，沒有任何停歇的跡象。<br>
+  </p>
+<div class="nav-container">
+  <label for="c25" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c27" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content27" class="chapter-content">
+  <h2>收官</h2>
+  <p>
+　　經過漫長而殘酷的戰鬥，雅威終於厭倦了這場毫無止境的殺戮。祂明白，唯有徹底殺死這個分身，才能結束這場毫無止境的戰爭。這是祂親手製造的麻煩，但同時，也是祂最深的牽絆。那份愛與憐惜，讓祂的手遲遲無法落下。<br>
+　　格利亞敏銳地捕捉到這一瞬的猶豫，瞳孔閃過狠戾之光，猛然撲上，準備給雅威致命一擊。<br>
+　　就在這瞬間，一道劍影如雷霆般破空而至，烈焰如天火般炸裂開來。只聽「轟」的一聲，格利亞的右臂被炎光斬斷，鮮血與火焰交織。那是手持智天使炎劍的加百列，從殺伐的血霧煙塵中現身，眼神冰冷如鐵。<br>
+　　尚未來得及反應，一股驚天的重擊再度襲來。雅威已經壓下心中情感，徹底振作，將祂的神力化作毀滅之擊，轟然落在格利亞的胸膛。血與光同時迸裂，一個巨大的空洞瞬間在祂的身軀上撕開。<br>
+　　格利亞的身體踉蹌倒下，重重砸落在大地，鮮血灑落天界與地獄。空氣中彷彿凝結，整個戰場一時陷入死寂。<br>
+</p>
+<div class="nav-container">
+  <label for="c26" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c28" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content28" class="chapter-content">
+  <h2>得到答案</h2>
+  <p>
+　　巴力目睹格利亞重傷倒地，心中驚駭，立刻趕往祂的身邊。然而，他的去路被守候在側的加百列橫劍攔下。烈焰纏繞的炎劍與巴力的怒意相撞，兩者在血與火中激烈纏鬥，火花迸散。<br>
+　　此時，雅威靜靜望著奄奄一息的格利亞，緩緩伸手覆上祂胸口那道巨大且可怖的裂口。重創之下，格利亞早已失去了對自身力量的掌控。那股強大而邪惡的黑暗正在瘋狂湧動，撕扯、反噬祂的心靈，同時卻又治癒祂的身軀，試圖奪取這位古老神祇的精神主宰權。<br>
+　　「為何不殺我？」<br>
+　　「我想知道祢的理由。」<br>
+　　「⋯⋯」<br>
+　　「艾爾…」<br>
+　　「我不願再看見祢內心的恐懼、懦弱和痛苦。而這一切的根源，都因為我的存在。」<br>
+　　「⋯⋯」<br>
+　　「如果我不在，祢便能丟棄這些。唯有祢親手殺了我，重新振作，所有人才能迎來幸福，不是嗎？」<br>
+  </p>
+<div class="nav-container">
+  <label for="c27" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c29" class="btn btn-next">下一章 →</label>
+</div>
+</div>
+
+<div id="content29" class="chapter-content">
+  <h2>結局</h2>
+  <p>
+　　這場持續了近十年的戰爭，終於劃下了句點。對神祇而言，這段歲月或許並不算長，但在漫長的歷史中，卻從未有過如此規模與慘烈的大戰。<br>
+　　天界承受了最為沉重的代價。祂們失去了半數的天使，其中一半在戰火中徹底殞落，另一半則因墮落而轉身投入黑暗。<br>
+　　原初巨獸利維坦與貝赫莫特，因驕傲而墜入深淵，自此之後便杳無音訊，生死不明。<br>
+　　至於魔王格利亞，祂的下落成為最大的謎團。有人斷言祂已死於雅威之手，也有人相信祂只是身負重傷，隱匿於幽冥，等待著復仇歸來的時刻。<br>
+　　不論真相如何，地獄的權柄已經易主。路西法繼承了格利亞的魔王之位，自此成為統御萬魔的魔鬼之首。<br>
+  </p>
+<div class="nav-container">
+  <label for="c28" class="btn btn-prev">← 上一章</label>
+  <label for="home" class="btn btn-home">返回章節列表</label>
+  <label for="c0" class="btn btn-next is-disabled">下一章 →</label>
+</div>
+</div>
+
+</div>
